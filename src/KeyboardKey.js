@@ -1,10 +1,11 @@
 import React from 'react';
+import './KeyboardKey.css';
 
-function Keyboard() {
+function KeyboardKey({format}) {
   return (
-    <div className="Keyboard">
+    <div className={(format === "white")? "WhiteKey": "BlackKey"}>
     </div>
   );
 }
 
-export default Keyboard;
+export default KeyboardKey;
