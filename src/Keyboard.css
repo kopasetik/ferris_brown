@@ -1,0 +1,7 @@
+#Keyboard {
+	border: solid 1px #000;
+	height: 20rem;
+	box-sizing: border-box;
+	display: inline;
+	width: 100%;
+}

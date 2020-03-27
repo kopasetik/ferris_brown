@@ -1,0 +1,13 @@
+.WhiteKey {
+	color: #000;
+	background: #fff;
+	height: 20rem;
+	width: 4%;
+}
+
+.BlackKey {
+	color: #fff;
+	background: #000;
+	height: 10rem;
+	width: 4%;
+}
