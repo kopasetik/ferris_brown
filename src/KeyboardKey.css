@@ -2,7 +2,7 @@
 	color: #000;
 	background: #fff;
 	height: 20rem;
-	width: 4%;
+	width: 6%;
 }
 
 .BlackKey {
@@ -10,4 +10,13 @@
 	background: #000;
 	height: 10rem;
 	width: 4%;
+	position: relative;
+}
+
+.WhiteKey + .BlackKey {
+	margin-left: -2%;
+}
+
+.BlackKey + .WhiteKey {
+	margin-left: -2%;
 }
