@@ -1,6 +1,13 @@
 import React from 'react';
 import KeyboardKey from './KeyboardKey';
 import './Keyboard.css';
+import Teoria from 'teoria';
+
+Teoria.note('Ab3').scale('major').simple()
+	.map(note => (note + ' goodness'))
+	.map(note => {
+		console.log(note)
+	})
 
 function Keyboard() {
   return (
