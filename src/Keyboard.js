@@ -60,6 +60,7 @@ class Keyboard extends React.Component {
 					format={color} 
 					key={idx}
 					update={this.updateScale}
+					isInCurrentScale={true}
 					>
 					{note}
 				</KeyboardKey>))}

@@ -21,3 +21,9 @@
 .BlackKey + .WhiteKey {
 	margin-left: -1.5em;
 }
+
+.isInCurrentScale {
+	background: #be4ac5;
+	color: #fff;
+	border: 1px solid #411744;
+}
