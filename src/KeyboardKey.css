@@ -2,7 +2,7 @@
 	color: #000;
 	background: #fff;
 	height: 20rem;
-	width: 6%;
+	width: 4em;
 	border: 1px solid #101010;
 }
 
@@ -10,14 +10,14 @@
 	color: #fff;
 	background: #000;
 	height: 10rem;
-	width: 4%;
+	width: 3em;
 	position: relative;
 }
 
 .WhiteKey + .BlackKey {
-	margin-left: -2%;
+	margin-left: -1.5em;
 }
 
 .BlackKey + .WhiteKey {
-	margin-left: -2%;
+	margin-left: -1.5em;
 }
