@@ -3,92 +3,84 @@ import KeyboardKey from './KeyboardKey';
 import './Keyboard.css';
 import Teoria from 'teoria';
 
-Teoria.note('Ab3').scale('major').simple()
-	.map(note => (note + ' goodness'))
-	.map(note => {
-		console.log(note)
-	})
 
-function Keyboard() {
-  return (
-    <div id="Keyboard">
-	  <KeyboardKey format="white">
-	  	C
-	  </KeyboardKey>
-	  <KeyboardKey format="black">
-	  	C#
-	  </KeyboardKey>
-	  <KeyboardKey format="white">
-	  	D
-	  </KeyboardKey>
-	  <KeyboardKey format="black">
-	  	Eb
-	  </KeyboardKey>
-	  <KeyboardKey format="white">
-	  	E
-	  </KeyboardKey>
-	  <KeyboardKey format="white">
-	  	F
-	  </KeyboardKey>
-	  <KeyboardKey format="black">
-	  	F#
-	  </KeyboardKey>
-	  <KeyboardKey format="white">
-	  	G
-	  </KeyboardKey>
-	  <KeyboardKey format="black">
-	  	Ab
-	  </KeyboardKey>
-	  <KeyboardKey format="white">
-	  	A
-	  </KeyboardKey>
-	  <KeyboardKey format="black">
-	  	Bb
-	  </KeyboardKey>
-	  <KeyboardKey format="white">
-	  	B
-	  </KeyboardKey>
-	  <KeyboardKey format="white">
-	  	C
-	  </KeyboardKey>
-	  <KeyboardKey format="black">
-	  	C#
-	  </KeyboardKey>
-	  <KeyboardKey format="white">
-	  	D
-	  </KeyboardKey>
-	  <KeyboardKey format="black">
-	  	Eb
-	  </KeyboardKey>
-	  <KeyboardKey format="white">
-	  	E
-	  </KeyboardKey>
-	  <KeyboardKey format="white">
-	  	F
-	  </KeyboardKey>
-	  <KeyboardKey format="black">
-	  	F#
-	  </KeyboardKey>
-	  <KeyboardKey format="white">
-	  	G
-	  </KeyboardKey>
-	  <KeyboardKey format="black">
-	  	Ab
-	  </KeyboardKey>
-	  <KeyboardKey format="white">
-	  	A
-	  </KeyboardKey>
-	  <KeyboardKey format="black">
-	  	Bb
-	  </KeyboardKey>
-	  <KeyboardKey format="white">
-	  	B
-	  </KeyboardKey>
-	  <KeyboardKey format="white">
-	  	C
-	  </KeyboardKey>
-    </div>
-  );
+class Keyboard extends React.Component {
+	constructor(props){
+		super(props)
+		this.state = {
+			currentScale: 'C',
+			currentMode: 'major',
+			pianoKeys: [
+				{note: 'C', color: 'white'},
+				{note: 'C#', color: 'black'},
+				{note: 'D', color: 'white'},
+				{note: 'Eb', color: 'black'},
+				{note: 'E', color: 'white'},
+				{note: 'F', color: 'white'},
+				{note: 'F#', color: 'black'},
+				{note: 'G', color: 'white'},
+				{note: 'Ab', color: 'black'},
+				{note: 'A', color: 'white'},
+				{note: 'Bb', color: 'black'},
+				{note: 'B', color: 'white'},
+				{note: 'C', color: 'white'},
+				{note: 'C#', color: 'black'},
+				{note: 'D', color: 'white'},
+				{note: 'Eb', color: 'black'},
+				{note: 'E', color: 'white'},
+				{note: 'F', color: 'white'},
+				{note: 'F#', color: 'black'},
+				{note: 'G', color: 'white'},
+				{note: 'Ab', color: 'black'},
+				{note: 'A', color: 'white'},
+				{note: 'Bb', color: 'black'},
+				{note: 'B', color: 'white'},
+				{note: 'C', color: 'white'},
+			]
+		}
+
+		this.updateScale = this.updateScale.bind(this)
+		this.reciteScale = this.reciteScale.bind(this)
+	}
+
+	updateScale(newScale){
+		this.setState({currentScale: newScale})
+	}
+
+	reciteScale(){
+		Teoria.note(this.state.currentScale).scale(this.state.currentMode).simple()
+			.map(note => (note + ' goodness'))
+			.map(note => {
+				console.log(note)
+				return note
+			})
+	}
+
+	componentDidMount(){
+		this.reciteScale()
+	}
+
+	componentDidUpdate(){
+		this.reciteScale()
+	}
+
+	render(){
+  		return (<div id="Keyboard">
+			{this.state.pianoKeys
+				.map(({note,color}, idx) => (
+				<KeyboardKey 
+					format={color} 
+					key={idx}
+					update={this.updateScale}
+					>
+					{note}
+				</KeyboardKey>))}
+			</div>)
+		}
+}
+
+Keyboard.defaultProps = {
+	scale: 'C'
 }
 
 export default Keyboard;
