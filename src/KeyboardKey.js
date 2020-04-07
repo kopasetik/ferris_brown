@@ -4,7 +4,8 @@ import './KeyboardKey.css';
 function KeyboardKey({format, 
 	children:note,
 	isInCurrentScale,
-	update}) {
+	update,
+	play}) {
 	
 	  const klassName=[
 		(format === 'white') ? 'WhiteKey' : 'BlackKey',
@@ -13,7 +14,10 @@ function KeyboardKey({format,
   return (
     <div 
 	  className={klassName}
-	  onClick={() => update(note)}
+	  onClick={() => {
+		  play(note)
+		  update(note)
+	  }}
 	  >
 	  {note}
     </div>
