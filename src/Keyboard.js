@@ -2,13 +2,15 @@ import React from 'react';
 import KeyboardKey from './KeyboardKey';
 import './Keyboard.css';
 import Teoria from 'teoria';
+import { Synth } from 'tone';
 
+const synth = new Synth().toMaster()
 
 class Keyboard extends React.Component {
 	constructor(props){
 		super(props)
 		this.state = {
-			currentScale: 'C',
+			currentScale: 'Bb',
 			currentMode: 'major',
 			pianoKeys: [
 				{note: 'C', color: 'white'},
@@ -28,10 +30,15 @@ class Keyboard extends React.Component {
 		}
 
 		this.updateScale = this.updateScale.bind(this)
+		this.playNote = this.playNote.bind(this)
 	}
 
 	updateScale(newScale){
-		this.setState({currentScale: newScale})
+		// this.setState({currentScale: newScale})
+	}
+
+	playNote(note){
+		synth.triggerAttackRelease(note + '4', '8n')
 	}
 
 	componentDidMount(){
@@ -51,6 +58,7 @@ class Keyboard extends React.Component {
 					key={idx}
 					update={this.updateScale}
 					isInCurrentScale={isInScale}
+					play={this.playNote}
 					>
 					{note}
 				</KeyboardKey>)}
