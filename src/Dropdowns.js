@@ -1,39 +1,32 @@
 import React from 'react'
 
-class Dropdowns extends React.Component {
+function Dropdowns (props) {
 
-	constructor(props){
-		super(props)
-	}
+	return (
+		<div id="dropdowns">
+			<p>Scale type</p>
+				
+			<p>
+				<select value={null} onChange={null}>
+					<option value="major">Major</option>
+					<option value="minor">Minor</option>
+					<option value="majorpentatonic">Major Pentatonic</option>
+					<option value="minorpentatonic">Minor Pentatonic</option>
+					<option value="blues">Blues</option>
+				</select>
+			</p>
 
-	render(){
-		return(
-			<div id="dropdowns">
-				<p>Scale type</p>
+			<p>Freeze?</p>
 				
-				<p>
-					<select>
-						<option value="major">Major</option>
-						<option value="minor">Minor</option>
-						<option value="majorpentatonic">Major Pentatonic</option>
-						<option value="minorpentatonic">Minor Pentatonic</option>
-						<option value="blues">Blues</option>
-					</select>
-				</p>
-
-				<p>Freeze?</p>
+			<p>
+				<select value={null} onChange={null}>
+					<option value="yes">Yes</option>
+					<option value="no">No</option>
+				</select>
+			</p>
 				
-				<p>
-					<select>
-						<option value="yes">Yes</option>
-						<option value="no">No</option>
-					</select>
-				</p>
-				
-			</div>
+		</div>
 		)	
-	}
-	
 }
 
 export default Dropdowns
