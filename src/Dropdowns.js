@@ -1,13 +1,12 @@
 import React from 'react'
 
-function Dropdowns (props) {
-
+function Dropdowns ({ currentMode, chgScale, isFrozen, freezeToggle }) {
 	return (
 		<div id="dropdowns">
 			<p>Scale type</p>
 				
 			<p>
-				<select value={null} onChange={null}>
+				<select value={currentMode} onChange={chgScale}>
 					<option value="major">Major</option>
 					<option value="minor">Minor</option>
 					<option value="majorpentatonic">Major Pentatonic</option>
@@ -19,9 +18,9 @@ function Dropdowns (props) {
 			<p>Freeze?</p>
 				
 			<p>
-				<select value={null} onChange={null}>
-					<option value="yes">Yes</option>
-					<option value="no">No</option>
+				<select value={isFrozen} onChange={freezeToggle}>
+					<option value={true}>Yes</option>
+					<option value={false}>No</option>
 				</select>
 			</p>
 				

@@ -1,5 +1,6 @@
 import React from 'react';
 import KeyboardKey from './KeyboardKey';
+import Dropdowns from './Dropdowns';
 import './Keyboard.css';
 import Teoria from 'teoria';
 import { Synth } from 'tone';
@@ -26,15 +27,26 @@ class Keyboard extends React.Component {
 				{note: 'Bb', color: 'black'},
 				{note: 'B', color: 'white'},
 				{note: 'C', color: 'white'},
-			]
+			],
+			isFrozen: true,
 		}
-
+		
+		this.chgMode = this.chgMode.bind(this)
+		this.freezeToggle = this.freezeToggle.bind(this)
 		this.updateScale = this.updateScale.bind(this)
 		this.playNote = this.playNote.bind(this)
 	}
 
+	chgMode(event){
+		this.setState({currentMode: event.target.value})
+	}
+
+	freezeToggle(){
+		this.setState({isFrozen: !this.state.isFrozen})
+	}	
+
 	updateScale(newScale){
-		// this.setState({currentScale: newScale})
+		if (!this.state.isFrozen){ this.setState({currentScale: newScale}) }
 	}
 
 	playNote(note){
@@ -48,7 +60,13 @@ class Keyboard extends React.Component {
 	}
 
 	render(){
-  		return (<div id="Keyboard">
+  		return (<div id="KeyboardCanvas">
+			<Dropdowns 
+				currentMode={this.state.currentMode} 
+				chgScale={this.chgMode} 
+				isFrozen={this.state.Frozen} 
+				freezeToggle={this.freezeToggle} />
+			<div id="Keyboard">
 			{this.state.pianoKeys
 				.map(({note,color}, idx) => {
 					const isSameNote = scaleNote => (Teoria.note(scaleNote).chroma() === Teoria.note(note).chroma())
@@ -63,6 +81,7 @@ class Keyboard extends React.Component {
 					{note}
 				</KeyboardKey>)}
 				)}
+			</div>
 			</div>)
 		}
 }
