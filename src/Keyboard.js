@@ -3,9 +3,9 @@ import KeyboardKey from './KeyboardKey';
 import Dropdowns from './Dropdowns';
 import './Keyboard.css';
 import Teoria from 'teoria';
-import { Synth } from 'tone';
+import { PolySynth } from 'tone';
 
-const synth = new Synth().toMaster()
+const synth = new PolySynth(6).toMaster()
 
 class Keyboard extends React.Component {
 	constructor(props){
@@ -34,7 +34,8 @@ class Keyboard extends React.Component {
 		this.chgMode = this.chgMode.bind(this)
 		this.freezeToggle = this.freezeToggle.bind(this)
 		this.updateScale = this.updateScale.bind(this)
-		this.playNote = this.playNote.bind(this)
+		this.attackNote = this.attackNote.bind(this)
+		this.releaseNote = this.releaseNote.bind(this)
 	}
 
 	chgMode(event){
@@ -49,8 +50,12 @@ class Keyboard extends React.Component {
 		if (!this.state.isFrozen){ this.setState({currentScale: newScale}) }
 	}
 
-	playNote(note, octave){
-		synth.triggerAttackRelease(note + octave, '8n')
+	attackNote(note, octave){
+		synth.triggerAttack([note + octave])
+	}
+
+	releaseNote(note, octave){
+		synth.triggerRelease([note + octave])
 	}
 
 	componentDidMount(){
@@ -77,7 +82,8 @@ class Keyboard extends React.Component {
 					key={idx}
 					update={this.updateScale}
 					isInCurrentScale={isInScale}
-					play={this.playNote}
+					attack={this.attackNote}
+					release={this.releaseNote}
 					>
 					{note}
 				</KeyboardKey>)}

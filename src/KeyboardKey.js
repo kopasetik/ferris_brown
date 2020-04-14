@@ -6,21 +6,30 @@ function KeyboardKey({format,
 	octave,
 	isInCurrentScale,
 	update,
-	play}) {
+	attack,
+	release}) {
 	
 	  const klassName=[
 		(format === 'white') ? 'WhiteKey' : 'BlackKey',
 		isInCurrentScale ? 'isInCurrentScale' : null
 	  ].join(' ')
+	  const pressStart = () => {
+		  attack(note, octave)
+		  update(note)
+	  }
+
+	  const pressEnd = () => {
+		  release(note, octave)
+	  }
   return (
     <div 
 	  className={klassName}
-	  onClick={() => {
-		  play(note, octave)
-		  update(note)
-	  }}
+	  onTouchStart={pressStart}
+	  onMouseDown={pressStart}
+	  onTouchEnd={pressEnd}
+	  onMouseUp={pressEnd}
+	  onContextMenu={(e) => { e.preventDefault() }}
 	  >
-	  {note}
     </div>
   );
 }
