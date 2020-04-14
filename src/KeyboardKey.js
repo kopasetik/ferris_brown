@@ -3,6 +3,7 @@ import './KeyboardKey.css';
 
 function KeyboardKey({format, 
 	children:note,
+	octave,
 	isInCurrentScale,
 	update,
 	play}) {
@@ -15,7 +16,7 @@ function KeyboardKey({format,
     <div 
 	  className={klassName}
 	  onClick={() => {
-		  play(note)
+		  play(note, octave)
 		  update(note)
 	  }}
 	  >

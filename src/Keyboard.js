@@ -14,19 +14,19 @@ class Keyboard extends React.Component {
 			currentScale: 'Bb',
 			currentMode: 'major',
 			pianoKeys: [
-				{note: 'C', color: 'white'},
-				{note: 'C#', color: 'black'},
-				{note: 'D', color: 'white'},
-				{note: 'Eb', color: 'black'},
-				{note: 'E', color: 'white'},
-				{note: 'F', color: 'white'},
-				{note: 'F#', color: 'black'},
-				{note: 'G', color: 'white'},
-				{note: 'Ab', color: 'black'},
-				{note: 'A', color: 'white'},
-				{note: 'Bb', color: 'black'},
-				{note: 'B', color: 'white'},
-				{note: 'C', color: 'white'},
+				{note: 'C', color: 'white', octave: 3},
+				{note: 'C#', color: 'black', octave: 3},
+				{note: 'D', color: 'white', octave: 3},
+				{note: 'Eb', color: 'black', octave: 3},
+				{note: 'E', color: 'white', octave: 3},
+				{note: 'F', color: 'white', octave: 3},
+				{note: 'F#', color: 'black', octave: 3},
+				{note: 'G', color: 'white', octave: 3},
+				{note: 'Ab', color: 'black', octave: 3},
+				{note: 'A', color: 'white', octave: 3},
+				{note: 'Bb', color: 'black', octave: 3},
+				{note: 'B', color: 'white', octave: 3},
+				{note: 'C', color: 'white', octave: 4},
 			],
 			isFrozen: true,
 		}
@@ -49,8 +49,8 @@ class Keyboard extends React.Component {
 		if (!this.state.isFrozen){ this.setState({currentScale: newScale}) }
 	}
 
-	playNote(note){
-		synth.triggerAttackRelease(note + '4', '8n')
+	playNote(note, octave){
+		synth.triggerAttackRelease(note + octave, '8n')
 	}
 
 	componentDidMount(){
@@ -68,10 +68,11 @@ class Keyboard extends React.Component {
 				freezeToggle={this.freezeToggle} />
 			<div id="Keyboard">
 			{this.state.pianoKeys
-				.map(({note,color}, idx) => {
+				.map(({note,color,octave}, idx) => {
 					const isSameNote = scaleNote => (Teoria.note(scaleNote).chroma() === Teoria.note(note).chroma())
 					const isInScale = Teoria.note(this.state.currentScale).scale(this.state.currentMode).simple().some(isSameNote)
 				return (<KeyboardKey 
+					octave={octave}
 					format={color} 
 					key={idx}
 					update={this.updateScale}
