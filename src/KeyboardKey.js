@@ -13,12 +13,14 @@ function KeyboardKey({format,
 		(format === 'white') ? 'WhiteKey' : 'BlackKey',
 		isInCurrentScale ? 'isInCurrentScale' : null
 	  ].join(' ')
-	  const pressStart = () => {
+	  const pressStart = (e) => {
+		  e.preventDefault()
 		  attack(note, octave)
 		  update(note)
 	  }
 
-	  const pressEnd = () => {
+	  const pressEnd = (e) => {
+		  e.preventDefault()
 		  release(note, octave)
 	  }
   return (
