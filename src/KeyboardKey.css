@@ -1,3 +1,7 @@
+.WhiteKey, .BlackKey {
+	touch-action: none;
+}
+
 .WhiteKey {
 	color: #000;
 	background: #fff;

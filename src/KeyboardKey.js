@@ -13,12 +13,18 @@ function KeyboardKey({format,
 		(format === 'white') ? 'WhiteKey' : 'BlackKey',
 		isInCurrentScale ? 'isInCurrentScale' : null
 	  ].join(' ')
-	  const pressStart = (e) => {
-		  e.preventDefault()
+
+	  const touchStart = (e) => {
 		  attack(note, octave)
 		  update(note)
 	  }
 
+	  const clickStart = (e) => {
+		  e.preventDefault()
+		  attack(note, octave)
+		  update(note)
+	  }
+	
 	  const pressEnd = (e) => {
 		  e.preventDefault()
 		  release(note, octave)
@@ -26,8 +32,8 @@ function KeyboardKey({format,
   return (
     <div 
 	  className={klassName}
-	  onTouchStart={pressStart}
-	  onMouseDown={pressStart}
+	  onTouchStart={touchStart}
+	  onMouseDown={clickStart}
 	  onTouchEnd={pressEnd}
 	  onMouseUp={pressEnd}
 	  onContextMenu={(e) => { e.preventDefault() }}
