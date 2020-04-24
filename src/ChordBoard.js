@@ -14,16 +14,15 @@ class ChordBoard extends React.Component {
 			currentScale: 'Bb',
 			currentMode: 'major',
 			chords: [
+				{chord: 'Bb'},
+				{chord: 'C'},
+				{chord: 'D'},
 				{chord: 'Eb'},
-				{chord: 'E'},
 				{chord: 'F'},
-				{chord: 'F#'},
 				{chord: 'G'},
-				{chord: 'Ab'},
 				{chord: 'A'},
 				{chord: 'Bb'},
 			],
-			isFrozen: true,
 		}
 		
 		this.attackNote = this.attackNote.bind(this)
