@@ -1,12 +1,12 @@
 import React from 'react';
 import './App.css';
-import Keyboard from './Keyboard.js';
+import ChordBoard from './ChordBoard.js';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-	  <Keyboard />
+	  <ChordBoard />
       </header>
     </div>
   );
