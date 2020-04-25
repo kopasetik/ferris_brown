@@ -1,11 +1,15 @@
 .ChordColumn {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
 	width: 10vw;
 	height: 90vh;
 	box-sizing: border-box;
 	border: 1px solid #000;
 }
 
-.Chord {
+.Voicing {
 	width: 9vw;
 	height: 12vh;
 	background: green;

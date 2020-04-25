@@ -1,6 +1,5 @@
 import React from 'react';
 import ChordColumn from './ChordColumn';
-import Dropdowns from './Dropdowns';
 import './ChordBoard.css';
 import Teoria from 'teoria';
 import { PolySynth } from 'tone';
@@ -15,13 +14,13 @@ class ChordBoard extends React.Component {
 			currentMode: 'major',
 			chords: [
 				{chord: 'Bb'},
-				{chord: 'C'},
-				{chord: 'D'},
+				{chord: 'Cm'},
+				{chord: 'Dm'},
 				{chord: 'Eb'},
 				{chord: 'F'},
-				{chord: 'G'},
-				{chord: 'A'},
-				{chord: 'Bb'},
+				{chord: 'Gm'},
+				{chord: 'Am'},
+				{chord: 'Bbdim'},
 			],
 		}
 		
@@ -41,14 +40,14 @@ class ChordBoard extends React.Component {
   		return (<div id="ChordBoardCanvas">
 			<div id="ChordBoard">
 			{this.state.chords
-				.map(({note,chord}, idx) => {
+				.map(({chord}, idx) => {
 					return (<ChordColumn 
 						chord={chord} 
 						key={idx}
 						attack={this.attackNote}
 						release={this.releaseNote}
 						>
-						{note}
+						{chord}
 					</ChordColumn>)}
 				)}
 			</div>
