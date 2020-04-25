@@ -1,7 +1,6 @@
 import React from 'react';
 import ChordColumn from './ChordColumn';
 import './ChordBoard.css';
-import Teoria from 'teoria';
 import { PolySynth } from 'tone';
 
 const synth = new PolySynth(6).toMaster()
@@ -24,16 +23,16 @@ class ChordBoard extends React.Component {
 			],
 		}
 		
-		this.attackNote = this.attackNote.bind(this)
-		this.releaseNote = this.releaseNote.bind(this)
+		this.attackChord = this.attackChord.bind(this)
+		this.releaseChord = this.releaseChord.bind(this)
 	}
 
-	attackNote(note, octave){
-		synth.triggerAttack([note + octave])
+	attackChord(chordVoicing){
+		synth.triggerAttack(chordVoicing)
 	}
 
-	releaseNote(note, octave){
-		synth.triggerRelease([note + octave])
+	releaseChord(chordVoicing){
+		synth.triggerRelease(chordVoicing)
 	}
 
 	render(){
@@ -44,8 +43,8 @@ class ChordBoard extends React.Component {
 					return (<ChordColumn 
 						chord={chord} 
 						key={idx}
-						attack={this.attackNote}
-						release={this.releaseNote}
+						attack={this.attackChord}
+						release={this.releaseChord}
 						>
 						{chord}
 					</ChordColumn>)}
