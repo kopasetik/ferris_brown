@@ -18,8 +18,8 @@ class ChordBoard extends React.Component {
 				{chord: 'Eb'},
 				{chord: 'F'},
 				{chord: 'Gm'},
-				{chord: 'Am'},
-				{chord: 'Bbdim'},
+				{chord: 'Adim'},
+				{chord: 'Bb'},
 			],
 		}
 		
