@@ -7,10 +7,11 @@
 	height: 90vh;
 	box-sizing: border-box;
 	border: 1px solid #000;
+	touch-action: none;
 }
 
 .Voicing {
-	width: 9vw;
-	height: 12vh;
+	width: 9.5vw;
+	height: 10vh;
 	background: green;
 }

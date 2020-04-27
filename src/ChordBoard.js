@@ -12,13 +12,13 @@ class ChordBoard extends React.Component {
 			currentScale: 'Bb',
 			currentMode: 'major',
 			chords: [
-				{chord: 'Bb'},
-				{chord: 'Cm'},
+				{chord: 'Am'},
+				{chord: 'C'},
+				{chord: 'D'},
 				{chord: 'Dm'},
-				{chord: 'Eb'},
 				{chord: 'F'},
-				{chord: 'Gm'},
-				{chord: 'Adim'},
+				{chord: 'Am'},
+				{chord: 'E'},
 				{chord: 'Bb'},
 			],
 		}
