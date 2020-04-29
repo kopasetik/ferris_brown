@@ -5,7 +5,7 @@ import Teoria from 'teoria'
 
 function ChordColumn({chord, attack, release, children}){
 	
-	var chordNotes = Teoria.chord(chord).simple()
+	const chordNotes = Teoria.chord(chord).simple()
 		.map(el => el).sort((noteA, noteB) => {
 			const chromaNoteA = Teoria.note(noteA).chroma()	
 			const chromaNoteB = Teoria.note(noteB).chroma()	
@@ -18,17 +18,40 @@ function ChordColumn({chord, attack, release, children}){
 			}
 			return 0
 		})
+	 
+	const cLen = chordNotes.length
 
 	// Generate each sequence algorithmically
 	// ideal result [5,5,4 ...,4,3,3]
+	// [5,5,4,5,5,4,5,5,4,5,5,4,5,5,4]
+	// [0,0,0,0,1,0,1,1,0,1,1,1,1,2,1]
 	// ie top and bottom chord have at least one octave-4 note
 	
-	const sequence = [5,5,4,5,4,4,4,4,4,4,4,3,4,3,3]
-	const sequencedNotes = sequence
-	  .map((el, idx) => chordNotes[idx % chordNotes.length] + el)
+	const sequence = [[5,5,4, // triad
+			  5,4,4,
+			  4,4,4,
+			  4,4,3,
+			  4,3,3],
+			[5,5,4,4, // 7ths
+			 5,4,4,4,
+			 4,4,4,4,
+			 4,4,4,3,
+			 4,4,3,3],
+			[5,5,5,4,4, // 9ths
+			 5,5,4,4,4,
+			 5,4,4,4,4,
+			 4,4,4,4,4,
+			 4,4,4,4,3],
+			[5,5,5,4,4,4, // 11ths
+			 5,5,4,4,4,4,
+			 5,4,4,4,4,4,
+			 4,4,4,4,4,4,
+			 4,4,4,4,4,3]]
+	const sequencedNotes = sequence[cLen - 3]
+	  .map((el, idx) => chordNotes[idx % cLen] + el)
 	const voicings = sequencedNotes
 	  .reduce((acc, curr, idx, arr) => {
-	    if (acc.length !== 0 && acc[acc.length - 1].length !== 3){
+	    if (acc.length !== 0 && acc[acc.length - 1].length !== cLen){
 				acc[acc.length - 1].push(curr)
 				return acc
 			}
@@ -37,6 +60,7 @@ function ChordColumn({chord, attack, release, children}){
 			return acc
 		}, [])
 	const bassNotes = chordNotes.map(el => el).reverse()
+	const bLen = bassNotes.length
 	return (<div className="ChordColumn"
 	  		onContextMenu={(e) => { e.preventDefault() }}
 		>
@@ -47,7 +71,7 @@ function ChordColumn({chord, attack, release, children}){
 				attack={attack}
 				release={release}
 				/>))}
-		{bassNotes.map((note, idx) => (<
+		{bassNotes.slice(bLen - 3, bLen).map((note, idx) => (<
 				Voicing
 				notes={[note + 3]}
 				key={voicings.length + idx}

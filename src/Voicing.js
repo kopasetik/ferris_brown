@@ -27,7 +27,6 @@ function Voicing({
 	  		onMouseUp={pressEnd}
 	  		onContextMenu={(e) => { e.preventDefault() }}
 			>
-		{notes.reduce((acc,curr) => (acc + ' ,'  + curr))}
 		</div>)
 }
 
