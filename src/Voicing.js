@@ -1,6 +1,7 @@
 import React from 'react'
 
 function Voicing({
+		chord,
 		notes,
 		attack,
 		release,
@@ -27,6 +28,7 @@ function Voicing({
 	  		onMouseUp={pressEnd}
 	  		onContextMenu={(e) => { e.preventDefault() }}
 			>
+			{ chord ? chord : '' } 
 		</div>)
 }
 

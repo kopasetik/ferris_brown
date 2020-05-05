@@ -64,10 +64,18 @@ function ChordColumn({chord, attack, release, children}){
 	return (<div className="ChordColumn"
 	  		onContextMenu={(e) => { e.preventDefault() }}
 		>
-		{voicings.map((notes, idx) => (<
-				Voicing 
+		{voicings.slice(0,1).map((notes, idx) => (<
+				Voicing
+				chord={chord}
 				notes={notes}
 				key={idx}
+				attack={attack}
+				release={release}
+				/>))}
+		{voicings.slice(1,voicings.length).map((notes, idx) => (<
+				Voicing 
+				notes={notes}
+				key={idx + 1}
 				attack={attack}
 				release={release}
 				/>))}

@@ -15,3 +15,8 @@
 	height: 10vh;
 	background: green;
 }
+
+.ChordColumn .Voicing:first-child {
+	background: rgba(240,248,255,1);
+	color: #000;
+}
