@@ -34,20 +34,21 @@ class ProgChordBoard extends React.Component {
 
 	render(){
   		return (<div id="ProgChordBoardCanvas">
-			<div id="ProgChordBoard">
-			{this.state.chords
-				.map(({chord}, idx) => {
-					return (<Voicing 
-						chord={chord} 
-						notes={Teoria.chord(chord).simple().map(note => note + 4)}
-						key={idx}
-						attack={this.attackChord}
-						release={this.releaseChord}
-						>
-						{chord}
-					</Voicing>)}
-				)}
-			</div>
+				<div id="ProgChordBoard">
+				{this.state.chords
+					.map(({chord}, idx) => {
+						return (<Voicing 
+							chord={chord} 
+							notes={Teoria.chord(chord).simple().map(note => note + 4)}
+							key={idx}
+							attack={this.attackChord}
+							release={this.releaseChord}
+							>
+							{chord}
+						</Voicing>)}
+					)}
+				</div>
+				<button>Play</button>
 			</div>)
 		}
 }
