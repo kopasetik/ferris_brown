@@ -1,0 +1,21 @@
+#ProgChordBoardCanvas {
+	width: 100%;
+}
+
+#ProgChordBoard {
+	height: 20rem;
+	box-sizing: border-box;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	width: 100%;
+	border: none;
+	touch-action: none;
+}
+
+#ProgChordBoard .Voicing {
+	width: 9.5vw;
+	height: 10vh;
+	background: green;
+	touch-action: none;
+}

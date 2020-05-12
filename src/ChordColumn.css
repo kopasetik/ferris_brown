@@ -10,7 +10,7 @@
 	touch-action: none;
 }
 
-.Voicing {
+.ChordColumn .Voicing {
 	width: 9.5vw;
 	height: 10vh;
 	background: green;
