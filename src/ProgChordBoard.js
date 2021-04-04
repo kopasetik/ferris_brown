@@ -2,10 +2,10 @@ import React from 'react';
 import './ProgChordBoard.css';
 import Voicing from './Voicing'
 import ProgPlayButton from './ProgPlayButton'
-import { Sequence, PolySynth, Transport } from 'tone';
+import { Sequence, PolySynth, Transport, Pattern } from 'tone';
 import Teoria from 'teoria'
 
-const synth = new PolySynth(6).toMaster()
+const synth = new PolySynth().toMaster()
 
 class ProgChordBoard extends React.Component {
 	constructor(props){
@@ -13,6 +13,7 @@ class ProgChordBoard extends React.Component {
 		this.state = {
 			currentScale: 'Bb',
 			currentMode: 'major',
+			currentArpeggio: 'default',
 			chords: [
 				{chord: 'Am'},
 				{chord: 'Dm'},
@@ -20,12 +21,16 @@ class ProgChordBoard extends React.Component {
 				{chord: 'F'},
 				{chord: 'G'},
 			],
+			arpeggios: [
+				'default'
+			],
 		}
 		
 		this.attackChord = this.attackChord.bind(this)
 		this.releaseChord = this.releaseChord.bind(this)
 		this.playSequence = this.playSequence.bind(this)
 		this.giveChordsNotes = this.giveChordsNotes.bind(this)
+		this.setArpeggio = this.setArpeggio.bind(this)
 	}
 
 	attackChord(chordVoicing){
@@ -36,16 +41,20 @@ class ProgChordBoard extends React.Component {
 		synth.triggerRelease(chordVoicing)
 	}
 
-	playSequence(chordNotes){
-		const chordIndexes = chordNotes.map((chord, idx) => idx)		
+	playSequence(chordNotes, arpeggio){
+		// incorporate arpeggios
+		const pattern = new Pattern((time, note) => {
+		}, ["C2", "D4", "E5", "A6"], "upDown");
 
-		const seq = new Sequence(function(val, i){
-			synth.triggerAttackRelease(chordNotes[i], '8n')
-		}, chordIndexes, '4n')
+		// const chordIndexes = chordNotes.map((chord, idx) => idx)		
 
-		seq.start(0)
-		seq.loop = 3
-		seq.humanize = true
+		// const seq = new Sequence(function(val, i){
+		// 	synth.triggerAttackRelease(chordNotes[i], '8n')
+		// }, chordIndexes, '4n')
+
+		// seq.start(0)
+		// seq.loop = 3
+		// seq.humanize = true
 
 		Transport.bpm.value = 67
 		Transport.start()
@@ -68,6 +77,10 @@ class ProgChordBoard extends React.Component {
     			.reduce((acc, curr, idx, arr) => {
         			return [...acc, octavedNotes.slice((arr[acc.length-1] || 0), curr)]
     			},[])
+	}
+
+	setArpeggio(arpeggio){
+
 	}
 
 	render(){
